@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 const Home = () => {
   return (
-    <div className="relative min-h-screen">
+    <div className="relative h-[940px] pt-[100px]">
       {/* Background image */}
       <div className="absolute inset-0 -z-10">
         <Image 
@@ -72,7 +72,7 @@ const Home = () => {
             </div>
 
             {/* Right small image */}
-            <div className="absolute top-1/4 -right-10 w-40 h-40 rounded-full overflow-hidden">
+            <div className="absolute top-1/4 -right-3 w-40 h-40 rounded-full overflow-hidden">
               <div className="relative w-full h-full">
                 <Image 
                   src="/home/city-3.jpg"
