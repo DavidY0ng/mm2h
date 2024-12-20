@@ -1,17 +1,16 @@
 "use client"
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
-import { Button } from "@/components/ui/button";
+import { Globe, Check } from "lucide-react";
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChevronDown } from "lucide-react";
 
 const NavLink = ({ href, children, isActive }) => {
     return (
@@ -20,7 +19,7 @@ const NavLink = ({ href, children, isActive }) => {
                 className={`relative z-10 ${
                     isActive
                         ? "text-blue-600 font-medium"
-                        : "text-slate-600 group-hover:text-blue-600"
+                        : "text-slate-700 group-hover:text-blue-600"
                 } transition-colors`}
             >
                 {children}
@@ -38,6 +37,7 @@ const NavLink = ({ href, children, isActive }) => {
 
 const Navbar = () => {
     const pathname = usePathname();
+    const [selectedLang, setSelectedLang] = useState('English');
     
     const navLinks = [
         { href: "/", label: "Home" },
@@ -46,6 +46,11 @@ const Navbar = () => {
         { href: "/pages", label: "News & Media" },
         { href: "/blog", label: "Hiring" },
     ];
+
+    const handleLanguageSelect = (lang) => {
+        setSelectedLang(lang);
+        // Add any additional language change logic here
+    };
 
     return (
         <nav className="fixed w-full top-0 z-50 bg-transparent backdrop-blur-md">
@@ -79,14 +84,28 @@ const Navbar = () => {
                     {/* Right Side - Language Selector */}
                     <div className="flex items-center space-x-4">
                         <DropdownMenu>
-                            <DropdownMenuTrigger className="flex items-center space-x-1 text-slate-600">
-                                <span>ENGLISH</span>
-                                <ChevronDown className="w-4 h-4" />
+                            <DropdownMenuTrigger className="flex items-center space-x-1 text-slate-700 cursor-pointer">
+                                <Globe className="w-5 h-5" />
                             </DropdownMenuTrigger>
                             <DropdownMenuContent>
-                                <DropdownMenuItem>English</DropdownMenuItem>
-                                <DropdownMenuItem>Bahasa Malaysia</DropdownMenuItem>
-                                <DropdownMenuItem>中文</DropdownMenuItem>
+                                <DropdownMenuItem 
+                                    className="flex items-center justify-between cursor-pointer"
+                                    onClick={() => handleLanguageSelect('English')}
+                                >
+                                    <span>English</span>
+                                    {selectedLang === 'English' && (
+                                        <Check className="w-4 h-4 text-blue-600 ml-2" />
+                                    )}
+                                </DropdownMenuItem>
+                                <DropdownMenuItem 
+                                    className="flex items-center justify-between cursor-pointer"
+                                    onClick={() => handleLanguageSelect('中文')}
+                                >
+                                    <span>中文</span>
+                                    {selectedLang === '中文' && (
+                                        <Check className="w-4 h-4 text-blue-600 ml-2" />
+                                    )}
+                                </DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>
                     </div>
