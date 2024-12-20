@@ -22,12 +22,12 @@ const testimonials = [
     {
         name: "Li Wei",
         location: "China",
-        text: "作为一名企业家，MM2H为我提供了绝佳的生活方式和平衡投资机会。强烈推荐！",
+        text: "作为一名企业家,MM2H为我提供了绝佳的生活方式和平衡投资机会。强烈推荐!",
     },
     {
         name: "Hiroshi Tanaka",
         location: "Japan",
-        text: "スカイウォーカーMM2Hは私たちの移住をスムーズにし、安心できるサービスを提供してくれました。マレーシアでの生活は最高です！",
+        text: "スカイウォーカーMM2Hは私たちの移住をスムーズにし、安心できるサービスを提供してくれました。マレーシアでの生活は最高です!",
     },
     {
         name: "Kim Min-Jae",
@@ -37,7 +37,7 @@ const testimonials = [
     {
         name: "Anson Wong",
         location: "Hong Kong",
-        text: "Skywalker MM2H讓我在馬來西亞找到理想的家，專業團隊提供了全方位支持，讓一切都變得簡單。",
+        text: "Skywalker MM2H讓我在馬來西亞找到理想的家,專業團隊提供了全方位支持,讓一切都變得簡單。",
     },
 ];
 
@@ -75,7 +75,7 @@ const Testimonials = () => {
             <div className="container mx-auto px-4">
                 {/* Section Header */}
                 <div className="text-center mb-16">
-                    <p className="font-bold mb-4 bg-gradient-to-r from-emerald-400 to-yellow-400 text-transparent bg-clip-text">
+                    <p className="font-bold mb-4 text-lg text-transparent bg-[linear-gradient(270deg,#E8B00B_0%,#04B07D_100%)] bg-clip-text">
                         // {t("testimonial.header")}
                     </p>
                     <h2 className="text-4xl md:text-5xl font-bold text-slate-800 max-w-4xl mx-auto">
