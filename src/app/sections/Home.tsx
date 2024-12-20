@@ -21,11 +21,11 @@ const Home = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left column - Text content */}
           <div className="space-y-8">
-            <h1 className="text-4xl md:text-6xl font-bold text-slate-800 leading-tight">
+            <h1 className="text-4xl md:text-6xl font-bold text-slate-700 leading-tight">
               Welcome to My Malaysia Second Home Program
             </h1>
             
-            <h2 className="text-2xl md:text-3xl font-semibold text-blue-600">
+            <h2 className="text-2xl md:text-3xl font-semibold text-blue-700">
               Your Gateway to a New Life in Malaysia
             </h2>
             
