@@ -1,5 +1,7 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React from 'react';
 import Image from 'next/image';
+import { useTranslation } from "react-i18next";
 
 const WhyChooseUs = () => {
   const features = [
@@ -42,7 +44,7 @@ const WhyChooseUs = () => {
         <div className="text-center mb-16">
           <p className="text-blue-600 font-bold mb-4">// WHY CHOOSE US</p>
           <h2 className="text-4xl md:text-4xl font-bold text-slate-800 max-w-3xl mx-auto">
-            SOME OF THE REASONS WHY MM2H
+            SOME OF THE REASONS WHY SKYWALKER
           </h2>
         </div>
 
