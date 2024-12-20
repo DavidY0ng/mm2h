@@ -1,8 +1,13 @@
+"use client"
+
 import React from 'react';
 import Image from 'next/image';
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
+  const { t } = useTranslation('home');
+
   return (
     <div className="relative h-[940px] pt-[100px]">
       {/* Background image */}
@@ -22,7 +27,7 @@ const Home = () => {
           {/* Left column - Text content */}
           <div className="space-y-8">
             <h1 className="text-4xl md:text-6xl font-bold text-slate-700 leading-tight">
-              Welcome to My Malaysia Second Home Program
+              {t('home.title')}
             </h1>
             
             <h2 className="text-2xl md:text-3xl font-semibold text-blue-700">

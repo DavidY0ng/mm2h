@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from 'next/navigation';
+import { usePathname } from "next/navigation";
 import { Globe, Check } from "lucide-react";
 import {
     DropdownMenu,
@@ -11,6 +11,7 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import i18next from "@/lib/i18n/i18n";
 
 const NavLink = ({ href, children, isActive }) => {
     return (
@@ -37,8 +38,16 @@ const NavLink = ({ href, children, isActive }) => {
 
 const Navbar = () => {
     const pathname = usePathname();
-    const [selectedLang, setSelectedLang] = useState('English');
-    
+    const [currentLanguage, setCurrentLanguage] = useState("en");
+
+    useEffect(() => {
+        const storedLanguage = localStorage.getItem("language");
+        if (storedLanguage) {
+            setCurrentLanguage(storedLanguage);
+            i18next.changeLanguage(storedLanguage);
+        }
+    }, []);
+
     const navLinks = [
         { href: "/", label: "Home" },
         { href: "/about-us", label: "About Us" },
@@ -47,9 +56,19 @@ const Navbar = () => {
         { href: "/blog", label: "Hiring" },
     ];
 
-    const handleLanguageSelect = (lang) => {
-        setSelectedLang(lang);
-        // Add any additional language change logic here
+    const languages = [
+        { code: "en", label: "English" },
+        { code: "zh", label: "中文" },
+    ];
+
+    const handleLanguageChange = async (languageCode: string) => {
+        try {
+            await i18next.changeLanguage(languageCode);
+            localStorage.setItem("language", languageCode);
+            setCurrentLanguage(languageCode);
+        } catch (error) {
+            console.error("Language change failed:", error);
+        }
     };
 
     return (
@@ -65,15 +84,17 @@ const Navbar = () => {
                             height={40}
                             className="w-10 h-10"
                         />
-                        <span className="text-xl font-semibold text-slate-800">MM2H</span>
+                        <span className="text-xl font-semibold text-slate-800">
+                            MM2H
+                        </span>
                     </Link>
 
                     {/* Navigation Links */}
                     <div className="hidden md:flex items-center space-x-6">
                         {navLinks.map((link) => (
-                            <NavLink 
-                                key={link.href} 
-                                href={link.href} 
+                            <NavLink
+                                key={link.href}
+                                href={link.href}
                                 isActive={pathname === link.href}
                             >
                                 {link.label}
@@ -87,25 +108,25 @@ const Navbar = () => {
                             <DropdownMenuTrigger className="flex items-center space-x-1 text-slate-700 cursor-pointer">
                                 <Globe className="w-5 h-5" />
                             </DropdownMenuTrigger>
-                            <DropdownMenuContent>
-                                <DropdownMenuItem 
-                                    className="flex items-center justify-between cursor-pointer"
-                                    onClick={() => handleLanguageSelect('English')}
-                                >
-                                    <span>English</span>
-                                    {selectedLang === 'English' && (
-                                        <Check className="w-4 h-4 text-blue-600 ml-2" />
-                                    )}
-                                </DropdownMenuItem>
-                                <DropdownMenuItem 
-                                    className="flex items-center justify-between cursor-pointer"
-                                    onClick={() => handleLanguageSelect('中文')}
-                                >
-                                    <span>中文</span>
-                                    {selectedLang === '中文' && (
-                                        <Check className="w-4 h-4 text-blue-600 ml-2" />
-                                    )}
-                                </DropdownMenuItem>
+                            <DropdownMenuContent align="end">
+                                {languages.map((lang) => (
+                                    <DropdownMenuItem
+                                        key={lang.code}
+                                        onClick={() =>
+                                            handleLanguageChange(lang.code)
+                                        }
+                                        className="cursor-pointer flex items-center justify-between"
+                                    >
+                                        <span
+                        
+                                        >
+                                            {lang.label}
+                                        </span>
+                                        {currentLanguage === lang.code && (
+                                            <Check className="w-4 h-4 ml-2 text-blue-600" />
+                                        )}
+                                    </DropdownMenuItem>
+                                ))}
                             </DropdownMenuContent>
                         </DropdownMenu>
                     </div>

@@ -41,8 +41,8 @@ const WhyChooseUs = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <p className="text-blue-600 font-bold mb-4">// WHY CHOOSE US</p>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 max-w-3xl mx-auto">
-            SOME OF THE REASONS WHY CHOOSE MM2H.
+          <h2 className="text-4xl md:text-4xl font-bold text-slate-800 max-w-3xl mx-auto">
+            SOME OF THE REASONS WHY MM2H
           </h2>
         </div>
 
