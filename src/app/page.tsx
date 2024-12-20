@@ -1,6 +1,7 @@
 import Home from "./sections/Home";
 import WhyChooseUs from "./sections/WhyChooseUs";
 import AboutUs from "./sections/AboutUs";
+import Testimonials from "./sections/Testimonials";
 
 export default function App() {
     return (
@@ -8,6 +9,7 @@ export default function App() {
             <Home />
             <WhyChooseUs />
             <AboutUs />
+            <Testimonials />
         </>
     );
 }
