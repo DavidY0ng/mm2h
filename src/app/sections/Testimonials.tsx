@@ -12,6 +12,7 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel";
 import { useTranslation } from "react-i18next";
+import { motion } from "motion/react";
 
 const testimonials = [
     {
@@ -42,7 +43,13 @@ const testimonials = [
 ];
 
 const TestimonialCard = ({ name, location, text }) => (
-    <div className="relative h-[300px] p-8 rounded-3xl overflow-hidden max-w-sm mx-auto">
+    <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="relative h-[300px] p-8 rounded-3xl overflow-hidden max-w-sm mx-auto"
+    >
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
             <Image
@@ -64,17 +71,39 @@ const TestimonialCard = ({ name, location, text }) => (
             {/* Testimonial Text */}
             <blockquote className="text-slate-800 text-lg">"{text}"</blockquote>
         </div>
-    </div>
+    </motion.div>
 );
 
 const Testimonials = () => {
     const { t } = useTranslation("home");
 
+    // Header animation variants
+    const headerVariants = {
+        hidden: {
+            opacity: 0,
+            y: 20
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.6,
+                ease: "easeOut"
+            }
+        }
+    };
+
     return (
         <section className="py-20">
             <div className="container mx-auto px-4">
                 {/* Section Header */}
-                <div className="text-center mb-16">
+                <motion.div 
+                    className="text-center mb-16"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={headerVariants}
+                >
                     <p className="font-bold mb-4 text-lg text-transparent bg-[linear-gradient(270deg,#E8B00B_0%,#04B07D_100%)] bg-clip-text">
                         // {t("testimonial.header")}
                     </p>
@@ -85,10 +114,16 @@ const Testimonials = () => {
                             {t("testimonial.title2")}
                         </span>
                     </h2>
-                </div>
+                </motion.div>
 
                 {/* Testimonial Carousel Container */}
-                <div className="flex justify-center relative px-16">
+                <motion.div 
+                    className="flex justify-center relative px-16"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8 }}
+                >
                     <div className="w-full max-w-[1200px]">
                         <Carousel
                             opts={{
@@ -111,7 +146,7 @@ const Testimonials = () => {
                             <CarouselNext className="absolute -right-12 top-1/2 -translate-y-1/2 hover:bg-blue-100 transition-colors" />
                         </Carousel>
                     </div>
-                </div>
+                </motion.div>
             </div>
         </section>
     );

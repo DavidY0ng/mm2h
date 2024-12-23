@@ -4,9 +4,43 @@ import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
+import { motion } from "motion/react";
 
 const Home = () => {
     const { t } = useTranslation("home");
+
+    // Animation variants for text content
+    const textVariants = {
+        hidden: { 
+            opacity: 0, 
+            x: -20 
+        },
+        visible: {
+            opacity: 1,
+            x: 0,
+            transition: { 
+                duration: 0.5,
+                ease: "easeOut"
+            }
+        }
+    };
+
+    // Animation variants for the button
+    const buttonVariants = {
+        hidden: { 
+            opacity: 0, 
+            x: -20 
+        },
+        visible: {
+            opacity: 1,
+            x: 0,
+            transition: { 
+                delay: 0.6, 
+                duration: 0.5,
+                ease: "easeOut"
+            }
+        }
+    };
 
     return (
         <div className="relative h-[940px] pt-[10px]">
@@ -26,28 +60,51 @@ const Home = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     {/* Left column - Text content */}
                     <div className="space-y-8">
-                        <h1 className="text-4xl md:text-6xl font-bold text-slate-700 leading-tight">
-                            {t("home.title")}
-                        </h1>
-
-                        <h2 className="text-2xl md:text-3xl font-semibold text-blue-700">
-                            {t("home.subtitle")}
-                        </h2>
-
-                        <p className="text-lg text-slate-600 leading-relaxed">
-                            {t("home.description")}
-                        </p>
-
-                        <Button
-                            size="lg"
-                            className="relative px-[100px] rounded-md group overflow-hidden"
+                        <motion.h1
+                            initial="hidden"
+                            animate="visible"
+                            variants={textVariants}
+                            className="text-4xl md:text-6xl font-bold text-slate-700 leading-tight"
                         >
-                            <span className="relative z-10 text-white">
-                            {t("home.learn_more")}
-                            </span>
-                            <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-yellow-400" />
-                            <div className="absolute inset-0 bg-gradient-to-l from-emerald-400 to-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out" />
-                        </Button>
+                            {t("home.title")}
+                        </motion.h1>
+
+                        <motion.h2
+                            initial="hidden"
+                            animate="visible"
+                            variants={textVariants}
+                            transition={{ delay: 0.2 }}
+                            className="text-2xl md:text-3xl font-semibold text-blue-700"
+                        >
+                            {t("home.subtitle")}
+                        </motion.h2>
+
+                        <motion.p
+                            initial="hidden"
+                            animate="visible"
+                            variants={textVariants}
+                            transition={{ delay: 0.4 }}
+                            className="text-lg text-slate-600 leading-relaxed"
+                        >
+                            {t("home.description")}
+                        </motion.p>
+
+                        <motion.div
+                            initial="hidden"
+                            animate="visible"
+                            variants={buttonVariants}
+                        >
+                            <Button
+                                size="lg"
+                                className="relative px-[100px] rounded-md group overflow-hidden"
+                            >
+                                <span className="relative z-10 text-white">
+                                    {t("home.learn_more")}
+                                </span>
+                                <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-yellow-400" />
+                                <div className="absolute inset-0 bg-gradient-to-l from-emerald-400 to-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out" />
+                            </Button>
+                        </motion.div>
                     </div>
 
                     {/* Right column - Images */}
