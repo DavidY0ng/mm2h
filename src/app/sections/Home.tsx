@@ -9,7 +9,7 @@ const Home = () => {
     const { t } = useTranslation("home");
 
     return (
-        <div className="relative h-[940px] pt-[100px]">
+        <div className="relative h-[940px] pt-[10px]">
             {/* Background image */}
             <div className="absolute inset-0 -z-10">
                 <Image
