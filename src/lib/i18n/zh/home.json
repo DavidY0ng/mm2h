@@ -4,5 +4,20 @@
         "subtitle": "Your Gateway to a New Life in Malaysia",
         "description": " With the My Malaysia Second Home program, we are dedicated to making your transition to living in Malaysia seamless, exciting, and hassle-free. Whether you're seeking a retirement haven, a thriving business environment, or a vibrant lifestyle, Malaysia offers numerous opportunities for expatriates to thrive.",
         "learn_more": "Learn More"
+    },
+    "what_is": {
+        "header": "项目概述",
+        "title": "什么是马来西亚我的第二家园计划？",
+        "description": "马来西亚我的第二家园（MM2H）计划是马来西亚政府推出的一项长期签证计划，允许符合条件的个人在马来西亚停留最长20年。该计划为外国人提供了一个享受马来西亚丰富文化、实惠生活和世界级设施的机会。",
+        "benefits": {
+            "1": "灵活的签证选项满足所有需求",
+            "2": "具有吸引力的财务优惠",
+            "3": "灵活的居住要求",
+            "4": "便利的医疗保健服务",
+            "5": "可选择携带家人同行",
+            "6": "战略性商业和工作机会",
+            "7": "柔佛经济特区优势",
+            "8": "优质的家庭生活方式"
+        }
     }
 }

@@ -19,5 +19,20 @@
         "header": "CUSTOMER TESTIMONIALS",
         "title1": "Delighting Our Customers,",
         "title2": "One Smile At A Time"
+    },
+    "what_is": {
+        "header": "PROGRAM OVERVIEW",
+        "title": "What is the MM2H Program?",
+        "description": "The Malaysia My Second Home (MM2H) program is a long-term visa initiative by the Malaysian government that allows eligible individuals to stay in Malaysia for up to 20 years. This program provides a gateway for foreigners to enjoy Malaysia's rich culture, affordable living, and world-class amenities.",
+        "benefits": {
+            "1": "Flexible Visa Options for All Needs",
+            "2": "Attractive Financial Benefits",
+            "3": "Flexible Residency Requirements",
+            "4": "Access to Affordable Healthcare",
+            "5": "Option to bring your family along",
+            "6": "Strategic Business and Work Opportunities",
+            "7": "Special Johor Economic Zone Advantages",
+            "8": "Enhanced Family Lifestyle"
+        }
     }
 }
