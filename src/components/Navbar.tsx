@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -13,7 +13,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import i18next from "@/lib/i18n/i18n";
 
-const NavLink = ({ href, children, isActive }) => {
+type NavLinkProps = {
+    href: string;
+    children: ReactNode;
+    isActive: boolean;
+};
+
+const NavLink = ({ href, children, isActive }: NavLinkProps) => {
     return (
         <Link href={href} className="relative px-4 py-2 group">
             <span
@@ -38,14 +44,15 @@ const NavLink = ({ href, children, isActive }) => {
 
 const Navbar = () => {
     const pathname = usePathname();
-    const [currentLanguage, setCurrentLanguage] = useState("en");
+    const [currentLanguage, setCurrentLanguage] = useState<string>("en"); // Set default value
+    const [isClient, setIsClient] = useState(false);
 
     useEffect(() => {
-        const storedLanguage = localStorage.getItem("language");
-        if (storedLanguage) {
-            setCurrentLanguage(storedLanguage);
-            i18next.changeLanguage(storedLanguage);
-        }
+        setIsClient(true);
+        // Only access localStorage after component mount and in client environment
+        const storedLanguage = window.localStorage.getItem("language") || "en";
+        setCurrentLanguage(storedLanguage);
+        i18next.changeLanguage(storedLanguage);
     }, []);
 
     const navLinks = [
@@ -64,7 +71,9 @@ const Navbar = () => {
     const handleLanguageChange = async (languageCode: string) => {
         try {
             await i18next.changeLanguage(languageCode);
-            localStorage.setItem("language", languageCode);
+            if (typeof window !== "undefined") {
+                window.localStorage.setItem("language", languageCode);
+            }
             setCurrentLanguage(languageCode);
         } catch (error) {
             console.error("Language change failed:", error);
@@ -108,26 +117,24 @@ const Navbar = () => {
                             <DropdownMenuTrigger className="flex items-center space-x-1 text-slate-700 cursor-pointer">
                                 <Globe className="w-5 h-5" />
                             </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                                {languages.map((lang) => (
-                                    <DropdownMenuItem
-                                        key={lang.code}
-                                        onClick={() =>
-                                            handleLanguageChange(lang.code)
-                                        }
-                                        className="cursor-pointer flex items-center justify-between"
-                                    >
-                                        <span
-                        
+                            {isClient && ( // Only render dropdown content on client-side
+                                <DropdownMenuContent align="end">
+                                    {languages.map((lang) => (
+                                        <DropdownMenuItem
+                                            key={lang.code}
+                                            onClick={() =>
+                                                handleLanguageChange(lang.code)
+                                            }
+                                            className="cursor-pointer flex items-center justify-between"
                                         >
-                                            {lang.label}
-                                        </span>
-                                        {currentLanguage === lang.code && (
-                                            <Check className="w-4 h-4 ml-2 text-blue-600" />
-                                        )}
-                                    </DropdownMenuItem>
-                                ))}
-                            </DropdownMenuContent>
+                                            <span>{lang.label}</span>
+                                            {currentLanguage === lang.code && (
+                                                <Check className="w-4 h-4 ml-2 text-blue-600" />
+                                            )}
+                                        </DropdownMenuItem>
+                                    ))}
+                                </DropdownMenuContent>
+                            )}
                         </DropdownMenu>
                     </div>
                 </div>

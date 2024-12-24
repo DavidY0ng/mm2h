@@ -14,6 +14,12 @@ import {
 import { useTranslation } from "react-i18next";
 import { motion } from "motion/react";
 
+type TestimonialCardProps = {
+    name: string;
+    location: string;
+    text: string;
+  };
+
 const testimonials = [
     {
         name: "John & Maria",
@@ -42,7 +48,7 @@ const testimonials = [
     },
 ];
 
-const TestimonialCard = ({ name, location, text }) => (
+const TestimonialCard = ({ name, location, text }: TestimonialCardProps) => (
     <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
