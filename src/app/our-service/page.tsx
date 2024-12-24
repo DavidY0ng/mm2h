@@ -5,6 +5,8 @@ import EducationBenefits from "./EducationBenefits";
 import RetirementBenefits from "./RetirementBenefits";
 import WhyMalaysia from "./WhyMalaysia";
 import ProcessSteps from "./ProcessSteps";
+import FAQSection from "./FAQ";
+import ContactUs from "../sections/ContactUs";
 
 export default function OurService() {
     return (
@@ -15,6 +17,8 @@ export default function OurService() {
 			<RetirementBenefits />
 			<WhyMalaysia />
 			<ProcessSteps />
+			<FAQSection />
+			<ContactUs />
         </>
     );
 }
