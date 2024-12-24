@@ -5,6 +5,7 @@ import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useTranslation } from "react-i18next";
 import { motion } from "motion/react";
+import Image from "next/image";
 
 const WhatIs = () => {
     const { t } = useTranslation("home");
@@ -18,23 +19,23 @@ const WhatIs = () => {
         t("what_is.benefits.6"),
         t("what_is.benefits.7"),
         t("what_is.benefits.8"),
-		t("what_is.benefits.9"),
+        t("what_is.benefits.9"),
     ];
 
     // Header animation variants
     const headerVariants = {
-        hidden: { 
+        hidden: {
             opacity: 0,
-            y: 20
+            y: 20,
         },
         visible: {
             opacity: 1,
             y: 0,
             transition: {
                 duration: 0.6,
-                ease: "easeOut"
-            }
-        }
+                ease: "easeOut",
+            },
+        },
     };
 
     // Card container variants for staggered children
@@ -42,32 +43,41 @@ const WhatIs = () => {
         hidden: {},
         visible: {
             transition: {
-                staggerChildren: 0.1
-            }
-        }
+                staggerChildren: 0.1,
+            },
+        },
     };
 
     // Individual card variants
     const cardVariants = {
-        hidden: { 
+        hidden: {
             opacity: 0,
-            y: 20
+            y: 20,
         },
         visible: {
             opacity: 1,
             y: 0,
             transition: {
                 duration: 0.5,
-                ease: "easeOut"
-            }
-        }
+                ease: "easeOut",
+            },
+        },
     };
 
     return (
         <section className="py-20">
             <div className="container mx-auto px-4">
+                {/* Background Image with Overlay */}
+                <div className="absolute inset-0 -z-10">
+                    <Image
+                        src="/home/bg.jpg"
+                        alt="Background"
+                        fill
+                        className="object-cover"
+                    />
+                </div>
                 {/* Section Header */}
-                <motion.div 
+                <motion.div
                     className="text-center mb-16"
                     initial="hidden"
                     whileInView="visible"
@@ -87,7 +97,7 @@ const WhatIs = () => {
 
                 {/* Benefits Grid */}
                 <div className="max-w-[1200px] mx-auto">
-                    <motion.div 
+                    <motion.div
                         className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
                         initial="hidden"
                         whileInView="visible"
@@ -95,10 +105,7 @@ const WhatIs = () => {
                         variants={containerVariants}
                     >
                         {benefits.map((benefit, index) => (
-                            <motion.div
-                                key={index}
-                                variants={cardVariants}
-                            >
+                            <motion.div key={index} variants={cardVariants}>
                                 <Card className="border border-slate-100 shadow-sm hover:shadow-md hover:bg-purple-50/80 transition-all duration-300 bg-white cursor-pointer group">
                                     <CardContent className="p-6">
                                         <div className="flex items-start gap-4">

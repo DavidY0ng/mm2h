@@ -80,19 +80,6 @@ const ProcessSteps = () => {
                 <div className="max-w-4xl mx-auto">
                     {/* Steps Navigation */}
                     <div className="flex items-center justify-between mb-8 relative w-full max-w-2xl mx-auto">
-                        {/* Background Line (gray) */}
-                        <div className="absolute top-1/2 left-0 right-0 h-[2px] bg-slate-200 " />
-
-                        {/* Progress Line (blue) */}
-                        <div
-                            className="absolute top-1/2 left-0 h-[2px] bg-blue-500  transition-all duration-300"
-                            style={{
-                                width: `${
-                                    ((activeStep - 1) / (steps.length - 1)) *
-                                    100
-                                }%`,
-                            }}
-                        />
 
                         {/* Step Numbers */}
                         <div className="relative flex justify-between w-full px-4">

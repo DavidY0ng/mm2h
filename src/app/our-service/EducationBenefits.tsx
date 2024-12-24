@@ -11,14 +11,14 @@ const EducationBenefits = () => {
     return (
         <section className="relative py-20">
             {/* Background Image with Overlay */}
-            <div className="absolute inset-0 -z-10">
+            {/* <div className="absolute inset-0 -z-10">
                 <Image
                     src="/our-service/edu-bg.jpg"
                     alt="Education Background"
                     fill
                     className="object-cover"
                 />
-            </div>
+            </div> */}
 
             <div className="container mx-auto px-4">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
