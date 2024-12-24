@@ -4,16 +4,20 @@ import { initReactI18next } from 'react-i18next';
 
 // Using require directly for JSON files
 import enHome from './en/home.json'
+import enOurService from './en/our-service.json'
 
 //zh
 import zhHome from './zh/home.json'
+import zhOurService from './zh/our-service.json'
 
 const resources = {
   en: {
     home: enHome,
+    our_service: enOurService
   },
   zh: {
     home: zhHome,
+    our_service: zhOurService
   }
 };
 
@@ -23,7 +27,7 @@ i18next
     resources,
     lng: localStorage.getItem('language') || 'en',
     fallbackLng: 'en',
-    ns: ['home'], // List your namespaces
+    ns: ['home', 'service'], // List your namespaces
     defaultNS: 'common',
     interpolation: {
       escapeValue: false

@@ -1,0 +1,18 @@
+{
+    "education": {
+        "header": "EDUCATION BENEFITS",
+        "title": "Advantages for Your Child's Future",
+        "main_description": "Malaysia offers a world-class education system aligned with UK and Western standards, recognized globally. Children enjoy equal access to schools in Kuala Lumpur, benefiting from bilingual education at reasonable costs, laying a strong foundation for their future success.",
+        "section1": {
+            "title": "1. Global Education Opportunities",
+            "description": "Malaysia's '3+0' and 'twinning' programs allow students to transfer credits seamlessly to prestigious universities in the US, UK, Canada, and Australia. These pathways eliminate the IELTS requirement and enable local visa processing. Graduates receive internationally recognized degrees at just a quarter of the cost of direct overseas study."
+        },
+        "section2": {
+            "title": "2. Practical Benefits for Families",
+            "benefits": {
+                "1": "Children with Second Home Visas can pursue university education locally and are eligible for a work permit upon graduation without the need for visa conversion.",
+                "2": "Malaysia's low barriers to obtaining overseas Chinese status offer additional advantages, such as tax exemptions, bonus points for college entrance exams, and eligibility to adopt a second child. Prioritizing immigration before pursuing education abroad ensures stability and a strong foundation for future endeavors."
+            }
+        }
+    }
+}
