@@ -4,6 +4,7 @@ import WhatIs from "./WhatIs";
 import EducationBenefits from "./EducationBenefits";
 import RetirementBenefits from "./RetirementBenefits";
 import WhyMalaysia from "./WhyMalaysia";
+import ProcessSteps from "./ProcessSteps";
 
 export default function OurService() {
     return (
@@ -13,6 +14,7 @@ export default function OurService() {
 			<EducationBenefits />
 			<RetirementBenefits />
 			<WhyMalaysia />
+			<ProcessSteps />
         </>
     );
 }
