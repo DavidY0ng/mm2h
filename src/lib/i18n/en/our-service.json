@@ -14,5 +14,27 @@
                 "2": "Malaysia's low barriers to obtaining overseas Chinese status offer additional advantages, such as tax exemptions, bonus points for college entrance exams, and eligibility to adopt a second child. Prioritizing immigration before pursuing education abroad ensures stability and a strong foundation for future endeavors."
             }
         }
+    },
+    "retirement": {
+        "header": "RETIREMENT BENEFITS",
+        "title": "Why Malaysia is Ideal for Retirement",
+        "section1": {
+            "title": "1. A Fulfilling Lifestyle for Seniors",
+            "description": "Malaysia provides a haven of happiness and contentment for retirees. With its warm hospitality, vibrant culture, and affordability, it offers a joyful and fulfilling lifestyle that caters to diverse interests."
+        },
+        "section2": {
+            "title": "2. Unmatched Quality of Life",
+            "benefits": {
+                "1": "Malaysia is celebrated as Asia's top choice for residency due to its advanced infrastructure, stunning natural landscapes, and world-class healthcare facilities.",
+                "2": "The country boasts year-round clean air and a pleasant climate (21-32 degrees Celsius), free from geological natural disasters like earthquakes, tsunamis, and volcanoes."
+            }
+        },
+        "section3": {
+            "title": "3. Retirement-Friendly Environment",
+            "benefits": {
+                "1": "The prevalence of Mandarin and cultural similarities with China make Malaysia a preferred choice for retirees from Chinese-speaking countries. The substantial Chinese population ensures a welcoming and familiar environment for retirees.",
+                "2": "Investment-friendly policies allow retirees to combine leisure with financial opportunities, creating a harmonious balance."
+            }
+        }
     }
 }
