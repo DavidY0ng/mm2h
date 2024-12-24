@@ -51,7 +51,7 @@ const Navbar = () => {
     const navLinks = [
         { href: "/", label: "Home" },
         { href: "/about-us", label: "About Us" },
-        { href: "/places", label: "MM2H Application" },
+        { href: "/our-service", label: "Our Service" },
         { href: "/pages", label: "News & Media" },
         { href: "/blog", label: "Hiring" },
     ];
