@@ -65,15 +65,15 @@ const WhatIs = () => {
     };
 
     return (
-        <section className="py-20">
-            <div className="container mx-auto px-4">
+        <section className="relative py-20">
+            <div className="container  mx-auto px-4">
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0 -z-10">
                     <Image
                         src="/home/bg.jpg"
                         alt="Background"
                         fill
-                        className="object-cover"
+                        className="object-filled"
                     />
                 </div>
                 {/* Section Header */}

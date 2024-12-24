@@ -4,13 +4,15 @@ import React, { ReactNode, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Globe, Check } from "lucide-react";
+import { Globe } from "lucide-react";
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
+
 import i18next from "@/lib/i18n/i18n";
 
 type NavLinkProps = {
@@ -81,7 +83,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="fixed w-full top-0 z-50 bg-transparent backdrop-blur-md">
+        <nav className="fixed w-full top-0 z-50 bg-transparent backdrop-blur-md ">
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-20">
                     {/* Logo */}
@@ -113,29 +115,32 @@ const Navbar = () => {
 
                     {/* Right Side - Language Selector */}
                     <div className="flex items-center space-x-4">
-                        <DropdownMenu>
-                            <DropdownMenuTrigger className="flex items-center space-x-1 text-slate-700 cursor-pointer">
-                                <Globe className="w-5 h-5" />
-                            </DropdownMenuTrigger>
-                            {isClient && ( // Only render dropdown content on client-side
-                                <DropdownMenuContent align="end">
+                        {isClient && (
+                            <Select
+                                value={currentLanguage}
+                                onValueChange={handleLanguageChange}
+                            >
+                                <SelectTrigger className="w-fit border-0 bg-transparent hover:bg-slate-50 focus:ring-0 focus:ring-offset-0">
+                                    <div className="flex items-center space-x-1 text-slate-700">
+                                        <Globe className="w-5 h-5" />
+                                        <SelectValue />
+                                    </div>
+                                </SelectTrigger>
+                                <SelectContent align="end">
                                     {languages.map((lang) => (
-                                        <DropdownMenuItem
+                                        <SelectItem
                                             key={lang.code}
-                                            onClick={() =>
-                                                handleLanguageChange(lang.code)
-                                            }
-                                            className="cursor-pointer flex items-center justify-between"
+                                            value={lang.code}
+                                            className="flex items-center justify-between"
                                         >
-                                            <span>{lang.label}</span>
-                                            {currentLanguage === lang.code && (
-                                                <Check className="w-4 h-4 ml-2 text-blue-600" />
-                                            )}
-                                        </DropdownMenuItem>
+                                            <div className="flex items-center justify-between w-full">
+                                                <span>{lang.label}</span>
+                                            </div>
+                                        </SelectItem>
                                     ))}
-                                </DropdownMenuContent>
-                            )}
-                        </DropdownMenu>
+                                </SelectContent>
+                            </Select>
+                        )}
                     </div>
                 </div>
             </div>
