@@ -1,6 +1,6 @@
 {
     "home": {
-		"title": "Welcome to My Malaysia Second Home Program123",
+        "title": "Welcome to My Malaysia Second Home Program123",
         "subtitle": "Your Gateway to a New Life in Malaysia",
         "description": " With the My Malaysia Second Home program, we are dedicated to making your transition to living in Malaysia seamless, exciting, and hassle-free. Whether you're seeking a retirement haven, a thriving business environment, or a vibrant lifestyle, Malaysia offers numerous opportunities for expatriates to thrive.",
         "learn_more": "Learn More"
@@ -19,5 +19,25 @@
             "7": "柔佛经济特区优势",
             "8": "优质的家庭生活方式"
         }
+    },
+    "contact": {
+        "title": "准备开始您的马来西亚之旅了吗？",
+        "subtitle": "立即联系我们！",
+        "header": "联系我们",
+        "info_title": "联系信息",
+        "phone_label": "电话",
+        "phone_value": "+6012",
+        "email_label": "电子邮件",
+        "email_value": "info@skywalkermm2h.com",
+        "address_label": "地址",
+        "address_value": "[您的地址]",
+        "social_title": "关注我们的社交媒体",
+        "social_description": "获取最新的MM2H新闻和建议：",
+        "facebook_handle": "@SkywalkerMM2H",
+        "facebook_url": "https://facebook.com/SkywalkerMM2H",
+        "instagram_handle": "@SkywalkerMM2H",
+        "instagram_url": "https://instagram.com/SkywalkerMM2H",
+        "linkedin_handle": "Skywalker MM2H Sdn Bhd",
+        "linkedin_url": "https://linkedin.com/company/skywalker-mm2h"
     }
 }

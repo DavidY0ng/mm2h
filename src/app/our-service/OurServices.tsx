@@ -79,7 +79,7 @@ const OurServices = () => {
                                             : ""
                                     }`}
                                 >
-                                    <Card className="hover:shadow-md transition-shadow duration-300">
+                                    <Card className="hover:shadow-[0_4px_20px_-2px_rgba(168,85,247,0.3)] transition-all duration-300">
                                         <CardContent className="p-6">
                                             <div className="flex gap-4">
                                                 <div className="flex-shrink-0">
