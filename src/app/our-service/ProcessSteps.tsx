@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { motion, AnimatePresence } from "motion/react";
 
 const ProcessSteps = () => {
     const [activeStep, setActiveStep] = useState(1);
@@ -53,6 +54,46 @@ const ProcessSteps = () => {
         },
     ];
 
+    // Animation variants for header
+    const headerVariants = {
+        hidden: { 
+            opacity: 0,
+            y: 20
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.6,
+                ease: "easeOut"
+            }
+        }
+    };
+
+    // Animation variants for step content
+    const contentVariants = {
+        enter: { 
+            opacity: 0,
+            x: 20
+        },
+        center: {
+            opacity: 1,
+            x: 0,
+            transition: {
+                duration: 0.3,
+                ease: "easeOut"
+            }
+        },
+        exit: {
+            opacity: 0,
+            x: -20,
+            transition: {
+                duration: 0.3,
+                ease: "easeIn"
+            }
+        }
+    };
+
     return (
         <section className="relative py-20">
             {/* Background Image with Overlay */}
@@ -67,37 +108,50 @@ const ProcessSteps = () => {
 
             <div className="container mx-auto px-4">
                 {/* Section Header */}
-                <div className="text-center mb-16">
+                <motion.div 
+                    className="text-center mb-16"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={headerVariants}
+                >
                     <p className="font-bold mb-4 text-lg text-blue-600">
                         // HOW TO GET STARTED
                     </p>
                     <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
                         Your Journey to Malaysia Begins Here
                     </h2>
-                </div>
+                </motion.div>
 
                 {/* Steps Container */}
-                <div className="max-w-4xl mx-auto">
+                <motion.div 
+                    className="max-w-4xl mx-auto"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                >
                     {/* Steps Navigation */}
                     <div className="flex items-center justify-between mb-8 relative w-full max-w-2xl mx-auto">
-
                         {/* Step Numbers */}
                         <div className="relative flex justify-between w-full px-4">
                             {steps.map((step) => (
-                                <button
+                                <motion.button
                                     key={step.number}
                                     onClick={() => setActiveStep(step.number)}
                                     className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm transition-all duration-300 relative z-10
-                    ${
-                        step.number === activeStep
-                            ? "bg-blue-600 text-white border-2 border-blue-600"
-                            : step.number < activeStep
-                            ? "bg-blue-600 text-white border-2 border-blue-600"
-                            : "bg-white text-slate-400 border-2 border-slate-200"
-                    }`}
+                                    ${
+                                        step.number === activeStep
+                                            ? "bg-blue-600 text-white border-2 border-blue-600"
+                                            : step.number < activeStep
+                                            ? "bg-blue-600 text-white border-2 border-blue-600"
+                                            : "bg-white text-slate-400 border-2 border-slate-200"
+                                    }`}
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.95 }}
                                 >
                                     {step.number}
-                                </button>
+                                </motion.button>
                             ))}
                         </div>
                     </div>
@@ -106,52 +160,48 @@ const ProcessSteps = () => {
                     <div className="bg-white rounded-2xl p-8 shadow-sm border border-slate-100">
                         {/* Fixed height container */}
                         <div className="h-[150px] relative">
-                            {steps.map(
-                                (step) =>
-                                    step.number === activeStep && (
-                                        <div
-                                            key={step.number}
-                                            className="absolute inset-0"
-                                        >
-                                            <div className="flex items-center gap-4 mb-4">
-                                                <div
-                                                    className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold bg-blue-50 text-blue-600`}
-                                                >
-                                                    {step.number}
+                            <AnimatePresence mode="wait">
+                                {steps.map(
+                                    (step) =>
+                                        step.number === activeStep && (
+                                            <motion.div
+                                                key={step.number}
+                                                className="absolute inset-0"
+                                                initial="enter"
+                                                animate="center"
+                                                exit="exit"
+                                                variants={contentVariants}
+                                            >
+                                                <div className="flex items-center gap-4 mb-4">
+                                                    <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold bg-blue-50 text-blue-600">
+                                                        {step.number}
+                                                    </div>
+                                                    <h3 className="text-xl font-bold text-slate-800">
+                                                        {step.title}
+                                                    </h3>
                                                 </div>
-                                                <h3 className="text-xl font-bold text-slate-800">
-                                                    {step.title}
-                                                </h3>
-                                            </div>
-                                            <div className="overflow-y-auto h-[100px] pl-16 pr-4">
-                                                <p className="text-slate-600 leading-relaxed">
-                                                    {step.description}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    )
-                            )}
+                                                <div className="overflow-y-auto h-[100px] pl-16 pr-4">
+                                                    <p className="text-slate-600 leading-relaxed">
+                                                        {step.description}
+                                                    </p>
+                                                </div>
+                                            </motion.div>
+                                        )
+                                )}
+                            </AnimatePresence>
                         </div>
 
-                        {/* Navigation Buttons - Fixed position at bottom */}
+                        {/* Navigation Buttons */}
                         <div className="flex justify-between mt-6 pl-16">
                             <Button
                                 variant="outline"
-                                onClick={() =>
-                                    setActiveStep((prev) =>
-                                        Math.max(prev - 1, 1)
-                                    )
-                                }
+                                onClick={() => setActiveStep((prev) => Math.max(prev - 1, 1))}
                                 disabled={activeStep === 1}
                             >
                                 Prev
                             </Button>
                             <Button
-                                onClick={() =>
-                                    setActiveStep((prev) =>
-                                        Math.min(prev + 1, steps.length)
-                                    )
-                                }
+                                onClick={() => setActiveStep((prev) => Math.min(prev + 1, steps.length))}
                                 disabled={activeStep === steps.length}
                                 className="flex items-center gap-2"
                             >
@@ -162,7 +212,7 @@ const ProcessSteps = () => {
                             </Button>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             </div>
         </section>
     );

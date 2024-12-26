@@ -5,8 +5,10 @@ import EducationBenefits from "./EducationBenefits";
 import RetirementBenefits from "./RetirementBenefits";
 import WhyMalaysia from "./WhyMalaysia";
 import ProcessSteps from "./ProcessSteps";
+import OurServices from "./OurServices";
 import FAQSection from "./FAQ";
 import ContactUs from "../sections/ContactUs";
+import ScrollToTop from "@/components/ScrollToTopButton";
 
 export default function OurService() {
     return (
@@ -17,8 +19,10 @@ export default function OurService() {
 			<RetirementBenefits />
 			<WhyMalaysia />
 			<ProcessSteps />
+			<OurServices />
 			<FAQSection />
 			<ContactUs />
+			<ScrollToTop />
         </>
     );
 }

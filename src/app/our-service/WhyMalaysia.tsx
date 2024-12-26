@@ -11,6 +11,7 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import { motion } from "motion/react";
 
 const WhyMalaysia = () => {
     const features = [
@@ -46,12 +47,66 @@ const WhyMalaysia = () => {
         },
     ];
 
+    // Animation variants for carousel
+    const carouselVariants = {
+        hidden: { 
+            opacity: 0,
+            x: -50
+        },
+        visible: {
+            opacity: 1,
+            x: 0,
+            transition: {
+                duration: 0.6,
+                ease: "easeOut"
+            }
+        }
+    };
+
+    // Animation variants for content
+    const contentVariants = {
+        hidden: { 
+            opacity: 0,
+            x: 50
+        },
+        visible: {
+            opacity: 1,
+            x: 0,
+            transition: {
+                duration: 0.6,
+                ease: "easeOut"
+            }
+        }
+    };
+
+    // Animation variants for carousel items
+    const carouselItemVariants = {
+        hidden: { 
+            opacity: 0,
+            scale: 0.95
+        },
+        visible: {
+            opacity: 1,
+            scale: 1,
+            transition: {
+                duration: 0.4,
+                ease: "easeOut"
+            }
+        }
+    };
+
     return (
         <section className="py-20">
             <div className="container mx-auto px-4">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     {/* Carousel Column */}
-                    <div className="relative">
+                    <motion.div 
+                        className="relative"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-100px" }}
+                        variants={carouselVariants}
+                    >
                         <Carousel
                             opts={{
                                 align: "start",
@@ -60,8 +115,8 @@ const WhyMalaysia = () => {
                             plugins={[
                                 Autoplay({
                                     delay: 3000,
-									stopOnMouseEnter: true,
-									stopOnInteraction: false
+                                    stopOnMouseEnter: true,
+                                    stopOnInteraction: false
                                 }),
                             ]}
                             className="w-full max-w-xl mx-auto"
@@ -69,7 +124,12 @@ const WhyMalaysia = () => {
                             <CarouselContent>
                                 {features.map((feature, index) => (
                                     <CarouselItem key={index}>
-                                        <div className="space-y-6">
+                                        <motion.div 
+                                            className="space-y-6"
+                                            initial="hidden"
+                                            animate="visible"
+                                            variants={carouselItemVariants}
+                                        >
                                             <div className="relative h-[400px] rounded-2xl overflow-hidden">
                                                 <Image
                                                     src={feature.image}
@@ -86,17 +146,23 @@ const WhyMalaysia = () => {
                                                     {feature.description}
                                                 </p>
                                             </div>
-                                        </div>
+                                        </motion.div>
                                     </CarouselItem>
                                 ))}
                             </CarouselContent>
                             <CarouselPrevious className="absolute -left-12 top-1/2 -translate-y-1/2" />
                             <CarouselNext className="absolute -right-12 top-1/2 -translate-y-1/2" />
                         </Carousel>
-                    </div>
+                    </motion.div>
 
                     {/* Content Column */}
-                    <div className="space-y-8">
+                    <motion.div 
+                        className="space-y-8"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-100px" }}
+                        variants={contentVariants}
+                    >
                         <div>
                             <p className="font-bold mb-4 text-lg text-blue-600">
                                 // WHY MALAYSIA
@@ -112,7 +178,7 @@ const WhyMalaysia = () => {
                             for a fulfilling lifestyle. Explore our diverse
                             features and see what makes Malaysia special.
                         </p>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </section>

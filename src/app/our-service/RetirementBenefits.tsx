@@ -3,16 +3,71 @@
 import React from "react";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
+import { motion } from "motion/react";
 
 const RetirementBenefits = () => {
     const { t } = useTranslation("our_service");
+
+    // Animation variants for content
+    const contentVariants = {
+        hidden: { 
+            opacity: 0,
+            x: -50
+        },
+        visible: {
+            opacity: 1,
+            x: 0,
+            transition: {
+                duration: 0.6,
+                ease: "easeOut"
+            }
+        }
+    };
+
+    // Animation variants for image
+    const imageVariants = {
+        hidden: { 
+            opacity: 0,
+            x: 50
+        },
+        visible: {
+            opacity: 1,
+            x: 0,
+            transition: {
+                duration: 0.6,
+                ease: "easeOut"
+            }
+        }
+    };
+
+    // Animation variants for list items
+    const listItemVariants = {
+        hidden: { 
+            opacity: 0,
+            x: -20
+        },
+        visible: {
+            opacity: 1,
+            x: 0,
+            transition: {
+                duration: 0.5,
+                ease: "easeOut"
+            }
+        }
+    };
 
     return (
         <section className="py-20">
             <div className="container mx-auto px-4">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     {/* Content Column */}
-                    <div className="space-y-8">
+                    <motion.div 
+                        className="space-y-8"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-100px" }}
+                        variants={contentVariants}
+                    >
                         {/* Section Header */}
                         <div>
                             <p className="font-bold mb-4 text-lg text-blue-600">
@@ -31,9 +86,7 @@ const RetirementBenefits = () => {
                                     {t("retirement.section1.title")}
                                 </h3>
                                 <p className="text-slate-600 leading-relaxed">
-                                    {t(
-                                        "retirement.section1.description"
-                                    )}
+                                    {t("retirement.section1.description")}
                                 </p>
                             </div>
 
@@ -42,23 +95,31 @@ const RetirementBenefits = () => {
                                 <h3 className="text-xl font-bold text-slate-800">
                                     {t("retirement.section2.title")}
                                 </h3>
-                                <ul className="space-y-3">
+                                <motion.ul 
+                                    className="space-y-3"
+                                    variants={{
+                                        visible: {
+                                            transition: {
+                                                staggerChildren: 0.1
+                                            }
+                                        }
+                                    }}
+                                >
                                     {[1, 2].map((num) => (
-                                        <li
+                                        <motion.li
                                             key={num}
                                             className="flex items-start gap-3"
+                                            variants={listItemVariants}
                                         >
                                             <div className="flex-shrink-0 w-6 h-6 rounded-full bg-purple-50 flex items-center justify-center mt-1">
                                                 <div className="w-2 h-2 rounded-full bg-purple-500" />
                                             </div>
                                             <p className="text-slate-600">
-                                                {t(
-                                                    `retirement.section2.benefits.${num}`
-                                                )}
+                                                {t(`retirement.section2.benefits.${num}`)}
                                             </p>
-                                        </li>
+                                        </motion.li>
                                     ))}
-                                </ul>
+                                </motion.ul>
                             </div>
 
                             {/* Section 3 */}
@@ -66,36 +127,50 @@ const RetirementBenefits = () => {
                                 <h3 className="text-xl font-bold text-slate-800">
                                     {t("retirement.section3.title")}
                                 </h3>
-                                <ul className="space-y-3">
+                                <motion.ul 
+                                    className="space-y-3"
+                                    variants={{
+                                        visible: {
+                                            transition: {
+                                                staggerChildren: 0.1
+                                            }
+                                        }
+                                    }}
+                                >
                                     {[1, 2].map((num) => (
-                                        <li
+                                        <motion.li
                                             key={num}
                                             className="flex items-start gap-3"
+                                            variants={listItemVariants}
                                         >
                                             <div className="flex-shrink-0 w-6 h-6 rounded-full bg-purple-50 flex items-center justify-center mt-1">
                                                 <div className="w-2 h-2 rounded-full bg-purple-500" />
                                             </div>
                                             <p className="text-slate-600">
-                                                {t(
-                                                    `retirement.section3.benefits.${num}`
-                                                )}
+                                                {t(`retirement.section3.benefits.${num}`)}
                                             </p>
-                                        </li>
+                                        </motion.li>
                                     ))}
-                                </ul>
+                                </motion.ul>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
 
-                    {/* Image Column remains the same */}
-                    <div className="relative h-[600px] rounded-2xl overflow-hidden lg:order-last">
+                    {/* Image Column */}
+                    <motion.div 
+                        className="relative h-[600px] rounded-2xl overflow-hidden lg:order-last"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-100px" }}
+                        variants={imageVariants}
+                    >
                         <Image
                             src="/our-service/retirement.png"
                             alt="Retirement in Malaysia"
                             fill
                             className="object-cover"
                         />
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </section>

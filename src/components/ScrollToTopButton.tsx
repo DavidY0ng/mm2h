@@ -1,33 +1,42 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ArrowUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const mainRef = useRef<HTMLElement | null>(null);
 
-  // Show button when page is scrolled up to given distance
-  const toggleVisibility = () => {
-    if (window.scrollY > 300) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-  };
-
-  // Set the scroll event listener
   useEffect(() => {
-    window.addEventListener('scroll', toggleVisibility);
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    // Get the main element reference
+    mainRef.current = document.querySelector('main');
+
+    const toggleVisibility = () => {
+      if (mainRef.current) {
+        if (mainRef.current.scrollTop > 300) {
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+        }
+      }
+    };
+
+    // Add scroll event listener to the main element instead of window
+    const mainElement = mainRef.current;
+    if (mainElement) {
+      mainElement.addEventListener('scroll', toggleVisibility);
+      return () => mainElement.removeEventListener('scroll', toggleVisibility);
+    }
   }, []);
 
-  // Scroll to top smoothly
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+    if (mainRef.current) {
+      mainRef.current.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }
   };
 
   return (

@@ -5,41 +5,42 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import { motion } from "motion/react";
+import Link from "next/link";
 
 const Home = () => {
     const { t } = useTranslation("home");
 
     // Animation variants for text content
     const textVariants = {
-        hidden: { 
-            opacity: 0, 
-            x: -20 
+        hidden: {
+            opacity: 0,
+            x: -20,
         },
         visible: {
             opacity: 1,
             x: 0,
-            transition: { 
+            transition: {
                 duration: 0.5,
-                ease: "easeOut"
-            }
-        }
+                ease: "easeOut",
+            },
+        },
     };
 
     // Animation variants for the button
     const buttonVariants = {
-        hidden: { 
-            opacity: 0, 
-            x: -20 
+        hidden: {
+            opacity: 0,
+            x: -20,
         },
         visible: {
             opacity: 1,
             x: 0,
-            transition: { 
-                delay: 0.6, 
+            transition: {
+                delay: 0.6,
                 duration: 0.5,
-                ease: "easeOut"
-            }
-        }
+                ease: "easeOut",
+            },
+        },
     };
 
     return (
@@ -94,16 +95,18 @@ const Home = () => {
                             animate="visible"
                             variants={buttonVariants}
                         >
-                            <Button
-                                size="lg"
-                                className="relative px-[100px] rounded-md group overflow-hidden"
-                            >
-                                <span className="relative z-10 text-white">
-                                    {t("home.learn_more")}
-                                </span>
-                                <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-yellow-400" />
-                                <div className="absolute inset-0 bg-gradient-to-l from-emerald-400 to-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out" />
-                            </Button>
+                            <Link href={"/our-service"}>
+                                <Button
+                                    size="lg"
+                                    className="relative px-[100px] rounded-md group overflow-hidden"
+                                >
+                                    <span className="relative z-10 text-white">
+                                        {t("home.learn_more")}
+                                    </span>
+                                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-yellow-400" />
+                                    <div className="absolute inset-0 bg-gradient-to-l from-emerald-400 to-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out" />
+                                </Button>
+                            </Link>
                         </motion.div>
                     </div>
 
