@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/select";
 
 import i18next from "@/lib/i18n/i18n";
+import MobileNav from "./MobileNav";
 
 type NavLinkProps = {
     href: string;
@@ -46,12 +47,11 @@ const NavLink = ({ href, children, isActive }: NavLinkProps) => {
 
 const Navbar = () => {
     const pathname = usePathname();
-    const [currentLanguage, setCurrentLanguage] = useState<string>("en"); // Set default value
+    const [currentLanguage, setCurrentLanguage] = useState<string>("en");
     const [isClient, setIsClient] = useState(false);
 
     useEffect(() => {
         setIsClient(true);
-        // Only access localStorage after component mount and in client environment
         const storedLanguage = window.localStorage.getItem("language") || "en";
         setCurrentLanguage(storedLanguage);
         i18next.changeLanguage(storedLanguage);
@@ -61,8 +61,8 @@ const Navbar = () => {
         { href: "/", label: "Home" },
         { href: "/about-us", label: "About Us" },
         { href: "/our-service", label: "Our Service" },
-        { href: "/pages", label: "News & Media" },
-        { href: "/blog", label: "Hiring" },
+        { href: "/news-and-media", label: "News & Media" },
+        { href: "/hiring", label: "Hiring" },
     ];
 
     const languages = [
@@ -83,7 +83,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="fixed w-full top-0 z-50 bg-transparent backdrop-blur-md ">
+        <nav className="fixed w-full top-0 z-50 bg-transparent backdrop-blur-md">
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-20">
                     {/* Logo */}
@@ -100,7 +100,7 @@ const Navbar = () => {
                         </span>
                     </Link>
 
-                    {/* Navigation Links */}
+                    {/* Desktop Navigation Links */}
                     <div className="hidden md:flex items-center space-x-6">
                         {navLinks.map((link) => (
                             <NavLink
@@ -113,20 +113,20 @@ const Navbar = () => {
                         ))}
                     </div>
 
-                    {/* Right Side - Language Selector */}
-                    <div className="flex items-center space-x-4">
+                    {/* Right Side - Language Selector and Mobile Nav */}
+                    <div className="flex items-center space-x-2">
                         {isClient && (
                             <Select
                                 value={currentLanguage}
                                 onValueChange={handleLanguageChange}
                             >
-                                <SelectTrigger className="w-fit border-0 bg-transparent hover:bg-slate-50 focus:ring-0 focus:ring-offset-0">
+                                <SelectTrigger className="border-0 bg-transparent hover:bg-slate-50 focus:ring-0 focus:ring-offset-0">
                                     <div className="flex items-center space-x-1 text-slate-700">
                                         <Globe className="w-5 h-5" />
-                                        <SelectValue />
+                                        <SelectValue className="hidden md:inline" />
                                     </div>
                                 </SelectTrigger>
-                                <SelectContent align="end">
+                                <SelectContent align="end" sideOffset={8}>
                                     {languages.map((lang) => (
                                         <SelectItem
                                             key={lang.code}
@@ -141,6 +141,12 @@ const Navbar = () => {
                                 </SelectContent>
                             </Select>
                         )}
+                        <div className="md:hidden">
+                            <MobileNav
+                                navLinks={navLinks}
+                                pathname={pathname}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
