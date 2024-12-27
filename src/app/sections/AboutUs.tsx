@@ -13,11 +13,13 @@ const AboutUs = () => {
     const imageVariants = {
         hidden: { 
             opacity: 0,
-            x: -50
+            x: 0,
+            scale: 0.95
         },
         visible: {
             opacity: 1,
             x: 0,
+            scale: 1,
             transition: {
                 duration: 0.6,
                 ease: "easeOut"
@@ -29,11 +31,11 @@ const AboutUs = () => {
     const textVariants = {
         hidden: { 
             opacity: 0,
-            x: 50
+            y: 20
         },
         visible: {
             opacity: 1,
-            x: 0,
+            y: 0,
             transition: {
                 duration: 0.6,
                 ease: "easeOut"
@@ -42,7 +44,7 @@ const AboutUs = () => {
     };
 
     return (
-        <section className="relative min-h-[780px] flex items-center">
+        <section className="relative min-h-[780px] flex items-center overflow-hidden">
             {/* Background Image */}
             <div className="absolute inset-0 -z-10">
                 <Image
@@ -60,7 +62,7 @@ const AboutUs = () => {
                         className="relative"
                         initial="hidden"
                         whileInView="visible"
-                        viewport={{ once: true, margin: "-100px" }}
+                        viewport={{ once: true, amount: 0.3 }}
                         variants={imageVariants}
                     >
                         <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
@@ -78,7 +80,7 @@ const AboutUs = () => {
                         className="space-y-6"
                         initial="hidden"
                         whileInView="visible"
-                        viewport={{ once: true, margin: "-100px" }}
+                        viewport={{ once: true, amount: 0.3 }}
                         variants={textVariants}
                     >
                         <div>
@@ -95,14 +97,6 @@ const AboutUs = () => {
                                 {t("about.description")}
                             </p>
                         </div>
-
-                        {/* <Button
-                            className="relative px-8 rounded-full group overflow-hidden mt-8"
-                        >
-                            <span className="relative z-10 text-white">Learn More</span>
-                            <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-yellow-400" />
-                            <div className="absolute inset-0 bg-gradient-to-l from-emerald-400 to-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out" />
-                        </Button> */}
                     </motion.div>
                 </div>
             </div>
