@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-comment-textnodes */
 "use client";
 
 import React from "react";
@@ -47,15 +46,14 @@ const WhyMalaysia = () => {
         },
     ];
 
-    // Animation variants for carousel
     const carouselVariants = {
         hidden: { 
             opacity: 0,
-            x: -50
+            y: 20
         },
         visible: {
             opacity: 1,
-            x: 0,
+            y: 0,
             transition: {
                 duration: 0.6,
                 ease: "easeOut"
@@ -63,15 +61,14 @@ const WhyMalaysia = () => {
         }
     };
 
-    // Animation variants for content
     const contentVariants = {
         hidden: { 
             opacity: 0,
-            x: 50
+            y: 20
         },
         visible: {
             opacity: 1,
-            x: 0,
+            y: 0,
             transition: {
                 duration: 0.6,
                 ease: "easeOut"
@@ -79,7 +76,6 @@ const WhyMalaysia = () => {
         }
     };
 
-    // Animation variants for carousel items
     const carouselItemVariants = {
         hidden: { 
             opacity: 0,
@@ -96,15 +92,40 @@ const WhyMalaysia = () => {
     };
 
     return (
-        <section className="py-20">
+        <section className="py-12 md:py-20 overflow-hidden">
             <div className="container mx-auto px-4">
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                    {/* Carousel Column */}
+                <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                    {/* Content Column - Moved to top on mobile */}
                     <motion.div 
-                        className="relative"
+                        className="space-y-6 lg:space-y-8 order-1 lg:order-2"
                         initial="hidden"
                         whileInView="visible"
-                        viewport={{ once: true, margin: "-100px" }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        variants={contentVariants}
+                    >
+                        <div>
+                            <p className="font-bold mb-3 lg:mb-4 text-lg text-blue-600">
+                                // WHY MALAYSIA
+                            </p>
+                            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
+                                Your Gateway to a Better Life
+                            </h2>
+                        </div>
+                        <p className="text-lg text-slate-600 leading-relaxed">
+                            Discover why Malaysia is the perfect choice for your
+                            second home. From its strategic location to its
+                            vibrant culture, Malaysia offers everything you need
+                            for a fulfilling lifestyle. Explore our diverse
+                            features and see what makes Malaysia special.
+                        </p>
+                    </motion.div>
+
+                    {/* Carousel Column */}
+                    <motion.div 
+                        className="relative w-full order-2 lg:order-1"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.3 }}
                         variants={carouselVariants}
                     >
                         <Carousel
@@ -119,18 +140,18 @@ const WhyMalaysia = () => {
                                     stopOnInteraction: false
                                 }),
                             ]}
-                            className="w-full max-w-xl mx-auto"
+                            className="w-full"
                         >
                             <CarouselContent>
                                 {features.map((feature, index) => (
                                     <CarouselItem key={index}>
                                         <motion.div 
-                                            className="space-y-6"
+                                            className="space-y-4 lg:space-y-6 px-2"
                                             initial="hidden"
                                             animate="visible"
                                             variants={carouselItemVariants}
                                         >
-                                            <div className="relative h-[400px] rounded-2xl overflow-hidden">
+                                            <div className="relative h-[300px] md:h-[400px] rounded-2xl overflow-hidden">
                                                 <Image
                                                     src={feature.image}
                                                     alt={feature.title}
@@ -138,11 +159,11 @@ const WhyMalaysia = () => {
                                                     className="object-cover"
                                                 />
                                             </div>
-                                            <div className="text-center p-4">
-                                                <h3 className="text-xl font-bold text-slate-800 mb-3">
+                                            <div className="text-center p-2 lg:p-4">
+                                                <h3 className="text-xl font-bold text-slate-800 mb-2 lg:mb-3">
                                                     {feature.title}
                                                 </h3>
-                                                <p className="text-slate-600">
+                                                <p className="text-slate-600 text-sm lg:text-base">
                                                     {feature.description}
                                                 </p>
                                             </div>
@@ -150,34 +171,11 @@ const WhyMalaysia = () => {
                                     </CarouselItem>
                                 ))}
                             </CarouselContent>
-                            <CarouselPrevious className="absolute -left-12 top-1/2 -translate-y-1/2" />
-                            <CarouselNext className="absolute -right-12 top-1/2 -translate-y-1/2" />
+                            <div className="hidden lg:block">
+                                <CarouselPrevious className="absolute -left-12 top-1/2 -translate-y-1/2" />
+                                <CarouselNext className="absolute -right-12 top-1/2 -translate-y-1/2" />
+                            </div>
                         </Carousel>
-                    </motion.div>
-
-                    {/* Content Column */}
-                    <motion.div 
-                        className="space-y-8"
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: "-100px" }}
-                        variants={contentVariants}
-                    >
-                        <div>
-                            <p className="font-bold mb-4 text-lg text-blue-600">
-                                // WHY MALAYSIA
-                            </p>
-                            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
-                                Your Gateway to a Better Life
-                            </h2>
-                        </div>
-                        <p className="text-lg text-slate-600 leading-relaxed">
-                            Discover why Malaysia is the perfect choice for your
-                            second home. From its strategic location to its
-                            vibrant culture, Malaysia offers everything you need
-                            for a fulfilling lifestyle. Explore our diverse
-                            features and see what makes Malaysia special.
-                        </p>
                     </motion.div>
                 </div>
             </div>
