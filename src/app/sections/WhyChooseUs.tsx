@@ -87,7 +87,7 @@ const WhyChooseUs = () => {
     };
 
     return (
-        <section className="py-20">
+        <section className="relative py-20">
             <div className="container mx-auto px-4">
                 {/* Section Header */}
                 <motion.div 

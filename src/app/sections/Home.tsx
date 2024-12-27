@@ -10,7 +10,6 @@ import Link from "next/link";
 const Home = () => {
     const { t } = useTranslation("home");
 
-    // Animation variants for text content
     const textVariants = {
         hidden: {
             opacity: 0,
@@ -26,7 +25,6 @@ const Home = () => {
         },
     };
 
-    // Animation variants for the button
     const buttonVariants = {
         hidden: {
             opacity: 0,
@@ -44,7 +42,7 @@ const Home = () => {
     };
 
     return (
-        <div className="relative h-[940px] pt-[10px]">
+        <div className="relative md:h-[940px] md:pt-[10px] pt-[30px]">
             {/* Background image */}
             <div className="absolute inset-0 -z-10">
                 <Image
@@ -57,10 +55,78 @@ const Home = () => {
             </div>
 
             {/* Main content container */}
-            <div className="container mx-auto px-4 py-32">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    {/* Left column - Text content */}
-                    <div className="space-y-8">
+            <div className="container mx-auto px-4 py-12 lg:py-32">
+                <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
+                    {/* Images section - Now first on mobile */}
+                    <div className="relative order-1 lg:order-2">
+                        {/* Main large center image */}
+                        <div className="relative w-[300px] lg:w-[400px] h-[400px] lg:h-[550px] rounded-full overflow-hidden mx-auto">
+                            <Image
+                                src="/home/city-1.jpg"
+                                alt="Beach chairs with umbrellas"
+                                fill
+                                className="object-cover"
+                                priority
+                            />
+                        </div>
+
+                        {/* Top small image */}
+                        <div className="hidden md:flex absolute -top-10 left-20 w-32 h-32 rounded-full overflow-hidden">
+                            <div className="relative w-full h-full">
+                                <Image
+                                    src="/home/city-2.jpg"
+                                    alt="Resort view"
+                                    fill
+                                    className="object-cover"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Right small image */}
+                        <div className="hidden md:flex absolute top-1/4 -right-3 w-40 h-40 rounded-full overflow-hidden">
+                            <div className="relative w-full h-full">
+                                <Image
+                                    src="/home/city-3.jpg"
+                                    alt="Hotel exterior"
+                                    fill
+                                    className="object-cover"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Bottom small image */}
+                        <div className="absolute -bottom-10 left-1/5 w-40 lg:w-52 h-40 lg:h-52 rounded-full bg-white p-2">
+                            <div className="relative w-full h-full rounded-full overflow-hidden">
+                                <Image
+                                    src="/home/city-4.jpg"
+                                    alt="Pool view"
+                                    fill
+                                    className="object-cover"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Decorative stars */}
+                        <div className="absolute -top-5 right-20 w-14 h-14">
+                            <Image
+                                src="/home/star2.png"
+                                alt="Decorative star"
+                                width={60}
+                                height={60}
+                            />
+                        </div>
+                        <div className="absolute bottom-40 -left-8 w-14 h-14">
+                            <Image
+                                src="/home/star1.png"
+                                alt="Decorative star"
+                                width={60}
+                                height={60}
+                            />
+                        </div>
+                    </div>
+
+                    {/* Text content - Now second on mobile */}
+                    <div className="space-y-8 order-2 lg:order-1">
                         <motion.h1
                             initial="hidden"
                             animate="visible"
@@ -108,74 +174,6 @@ const Home = () => {
                                 </Button>
                             </Link>
                         </motion.div>
-                    </div>
-
-                    {/* Right column - Images */}
-                    <div className="relative">
-                        {/* Main large center image */}
-                        <div className="relative w-[400px] h-[550px] rounded-full overflow-hidden mx-auto">
-                            <Image
-                                src="/home/city-1.jpg"
-                                alt="Beach chairs with umbrellas"
-                                fill
-                                className="object-cover"
-                                priority
-                            />
-                        </div>
-
-                        {/* Top small image */}
-                        <div className="absolute -top-10 left-20 w-32 h-32 rounded-full overflow-hidden">
-                            <div className="relative w-full h-full">
-                                <Image
-                                    src="/home/city-2.jpg"
-                                    alt="Resort view"
-                                    fill
-                                    className="object-cover"
-                                />
-                            </div>
-                        </div>
-
-                        {/* Right small image */}
-                        <div className="absolute top-1/4 -right-3 w-40 h-40 rounded-full overflow-hidden">
-                            <div className="relative w-full h-full">
-                                <Image
-                                    src="/home/city-3.jpg"
-                                    alt="Hotel exterior"
-                                    fill
-                                    className="object-cover"
-                                />
-                            </div>
-                        </div>
-
-                        {/* Bottom small image */}
-                        <div className="absolute -bottom-10 left-1/5 w-52 h-52 rounded-full bg-white p-2">
-                            <div className="relative w-full h-full rounded-full overflow-hidden">
-                                <Image
-                                    src="/home/city-4.jpg"
-                                    alt="Pool view"
-                                    fill
-                                    className="object-cover"
-                                />
-                            </div>
-                        </div>
-
-                        {/* Decorative stars */}
-                        <div className="absolute -top-5 right-20 w-14 h-14">
-                            <Image
-                                src="/home/star2.png"
-                                alt="Decorative star"
-                                width={60}
-                                height={60}
-                            />
-                        </div>
-                        <div className="absolute bottom-40 -left-8 w-14 h-14">
-                            <Image
-                                src="/home/star1.png"
-                                alt="Decorative star"
-                                width={60}
-                                height={60}
-                            />
-                        </div>
                     </div>
                 </div>
             </div>
